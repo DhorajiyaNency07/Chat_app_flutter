@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:chat_app_flutter/model_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChatScreen extends StatefulWidget {
   final Map<String, dynamic>? data;
+  // final UserModelForChat? data;
 
   const ChatScreen({Key? key, this.data}) : super(key: key);
 
@@ -15,7 +18,9 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   SharedPreferences? prefs;
+
   Map userData = {};
+  // UserModelForChat? userData;
 
   String? groupChatId;
   CollectionReference? users;
@@ -54,7 +59,8 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: widget.data!['image'] == null
+          leading:
+          widget.data!['image'] == null
               ? ClipOval(
                   child: Container(
                     height: 45,
